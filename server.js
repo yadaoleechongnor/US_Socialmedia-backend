@@ -18,14 +18,14 @@ app.use(
 // Set strictQuery to false to suppress the warning
 mongoose.set('strictQuery', false);
 
-// routes
+// Routes
 readdirSync("./routes").map((r) => app.use("/", require("./routes/" + r)));
 
-// database
+// Database connection
 mongoose
   .connect(process.env.DATABASE_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true, // It's a good practice to include this option
+    useUnifiedTopology: true, // Recommended option
   })
   .then(() => console.log("database connected successfully"))
   .catch((err) => console.log("error connecting to mongodb", err));
